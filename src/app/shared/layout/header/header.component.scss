@@ -1,0 +1,54 @@
+.header {
+  padding: 42px 0 40px 0;
+  border-bottom: 1px solid #DCDCF3;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+      position: relative;
+      font-size: 30px;
+      font-family: 'Museo Sans Cyril bold', sans-serif;
+      color: #6933DC;
+      display: flex;
+      text-decoration: none;
+
+      span {
+        font-family: 'Museo Sans Cyril', sans-serif;
+      }
+
+      .logo__img {
+        position: absolute;
+        width: 12%;
+        top: -3px;
+        left: 204px;
+      }
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+
+      .profile-image {
+        margin-right: 5px;
+      }
+
+      .profile-user {
+        font-size: 18px;
+        line-height: 18px;
+      }
+
+      .profile-logout {
+        font-size: 12px;
+        line-height: 12px;
+
+        &:hover {
+          cursor: pointer;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

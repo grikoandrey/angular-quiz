@@ -1,0 +1,25 @@
+.main {
+  padding: 190px 0 231px 0;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .main__content {
+      max-width: 588px;
+
+      .main__description {
+        font-family: 'Museo Sans Cyrl', sans-serif;
+        font-size: 20px;
+        line-height: 24px;
+        margin: 40px 0 60px 0;
+        max-width: 486px;
+      }
+
+      .main__btn {
+        //margin-top: 60px;
+      }
+    }
+  }
+}
