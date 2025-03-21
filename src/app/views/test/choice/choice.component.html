@@ -4,6 +4,14 @@
       <h1 class="choice__title">Выберите <span>тему теста</span></h1>
       <p class="choice__description">Чтобы начать тест, выберите одну из предложенных ниже тем.</p>
       <div class="choice__details" id="choice__details">
+        <div class="choice__group" *ngFor="let quiz of quizzes" (click)="chooseQuiz(quiz.id)">
+          <div class="choice__group-result" *ngIf="quiz.result">
+            <div>Результат</div>
+            <div>{{ quiz.result }}</div>
+          </div>
+          <div class="choice__group-text">{{ quiz.name }}</div>
+          <div class="choice__group-arrow"><img src="./assets/images/arrow.png" alt="arrow"></div>
+        </div>
       </div>
     </div>
     <div class="choice__image">

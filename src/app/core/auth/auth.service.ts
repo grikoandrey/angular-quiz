@@ -7,6 +7,7 @@ import {UserInfoType} from "../../../types/user-info.type";
 import {LogoutResponseType} from "../../../types/logout-response.type";
 import {SignupResponseType} from "../../../types/signup-response.type";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {RefreshResponseType} from "../../../types/refresh-response.type";
 
 @Injectable({
   providedIn: 'root'
@@ -83,6 +84,13 @@ export class AuthService {
   }
   public removeUserInfo(): void {
     localStorage.removeItem(this.userInfoKey);
+  };
+
+  public getTokens(): {accessToken: string | null, refreshToken: string | null} {
+    return {
+      accessToken: localStorage.getItem(this.accessTokenKey),
+      refreshToken: localStorage.getItem(this.refreshTokenKey),
+    }
   }
 
   public getUserInfo(): UserInfoType | null {
@@ -91,5 +99,12 @@ export class AuthService {
       return JSON.parse(userInfo);
     }
     return null;
+  };
+
+  refresh(): Observable<RefreshResponseType> {
+    const refreshToken: string | null = localStorage.getItem(this.refreshTokenKey);
+    return this.http.post<RefreshResponseType>(environment.apiHost + 'refresh', {
+      refreshToken,
+    })
   }
 }

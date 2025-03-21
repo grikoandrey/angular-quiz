@@ -1,1 +1,52 @@
-<p>test works!</p>
+<main class="test" *ngIf="quiz">
+  <div class="container">
+    <div class="test__content">
+      <h4 class="test__pre-title" id="pre-title">{{ quiz.name }}</h4>
+      <div class="test__progress-bar" id="progress-bar">
+        <div class="test__progress-bar-item active" *ngFor="let item of quiz.questions; let i = index;"
+             [class.active]="currentQuestionIndex === (i + 1)"
+             [class.complete]="currentQuestionIndex > (i + 1)">
+          <div class="test__progress-bar-item-circle"></div>
+          <div class="test__progress-bar-item-text">Вопрос {{ i + 1 }}</div>
+        </div>
+      </div>
+      <div class="test__question">
+        <div class="test__question-title" id="title">
+          <span>Вопрос {{ currentQuestionIndex }}:</span> {{ activeQuestion.question }}
+        </div>
+        <div class="test__question-options" id="options">
+          <div class="test__question-option" *ngFor="let answer of activeQuestion.answers">
+            <input class="option-answer" id="answer-{{answer.id}}" [(ngModel)]="chosenAnswerId" type="radio"
+                   name="answer"
+                   [value]="answer.id"><label for="answer-{{answer.id}}">{{ answer.answer }}</label>
+          </div>
+        </div>
+      </div>
+      <div class="test__actions">
+        <div class="test__previous-action">
+          <button class="button btn-transparent" id="prev" [disabled]="currentQuestionIndex === 1"
+                  (click)="move(actionTestType.prev)">
+            Назад
+          </button>
+        </div>
+        <div class="test__time">
+          <div class="test__time-text">Осталось времени:</div>
+          <div class="test__time-clock" id="timer">{{ timerSeconds }}</div>
+        </div>
+        <div class="test__next-action">
+          <button class="button btn-transparent" id="next" [disabled]="!chosenAnswerId"
+                  (click)="move(actionTestType.next)">
+            {{ currentQuestionIndex === quiz.questions.length ? 'Завершить' : 'Дальше' }}
+          </button>
+        </div>
+      </div>
+      <div class="pass-question">
+        <a href="javascript:void(0)" id="pass"
+           (click)="move(actionTestType.pass)">
+          Пропустить вопрос
+          <img src="./assets/images/small-arrow.png"
+               alt="small arrow"></a>
+      </div>
+    </div>
+  </div>
+</main>

@@ -37,7 +37,7 @@ body {
     display: inline-block;
   }
 
-  &:hover {
+  &:not(:disabled):hover {
     background: #41267f;
     color: #fff;
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../core/auth/auth.service";
 
 @Component({
   selector: 'app-main',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  link: string = '';
+
+  constructor(private authService: AuthService,) { }
 
   ngOnInit(): void {
+    this.link = this.authService.getLoggedIn() ? '/choice': '/login';
   }
 
 }
